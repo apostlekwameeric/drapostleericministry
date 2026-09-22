@@ -119,15 +119,16 @@ export default function AdminDashboard({ initialBrand }: { initialBrand: BrandIn
     setCreating(true);
     const result = await adminAction({
       action: "create-room",
-      hostName: newHost || brand.name.split(" ").slice(0, 2).join(" "),
-      title: newTitle,
+      hostName: newHost.trim() || brand.name.split(" ").slice(0, 2).join(" ") || "Host",
+      title: newTitle.trim(),
       mode: newMode,
-      tagline: newTagline,
-      scheduledFor: newWhen,
+      tagline: newTagline.trim(),
+      scheduledFor: newWhen.trim(),
     });
     setCreating(false);
     if (!result.ok || !result.code) {
-      notify(result.error ?? "Could not create the room", "warn");
+      const errMsg = result.error || "Could not create the room. Please check connection and try again.";
+      notify(errMsg, "warn");
       return;
     }
     const identity: Identity = {
@@ -143,7 +144,7 @@ export default function AdminDashboard({ initialBrand }: { initialBrand: BrandIn
     setNewWhen("");
     setFocusCode(identity.code);
     chatCodeRef.current = null;
-    notify("Room created — open it as host on the phone that will stream");
+    notify(`Room #${identity.code.toUpperCase()} created successfully!`);
     await refresh();
   };
 

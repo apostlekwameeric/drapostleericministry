@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     "/api/brand/logo": ["./public/brand/**/*", "./src/assets/**/*"],
     "/api/media/[folder]/[file]": ["./public/**/*"],
     "/api/media": ["./public/**/*"],
+    "/api/ads": ["./public/ads/**/*"],
+    "/api/ads/[slot]": ["./public/ads/**/*"],
   },
   async rewrites() {
     return [

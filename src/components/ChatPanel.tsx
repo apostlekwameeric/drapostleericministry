@@ -23,7 +23,7 @@ function initials(name: string) {
 }
 
 function Avatar({ src, name, size }: { src: string | null; name: string; size: "sm" | "md" }) {
-  const box = size === "sm" ? "h-6 w-6 text-[9px]" : "h-7 w-7 text-[10px]";
+  const box = size === "sm" ? "h-5 w-5 text-[8px]" : "h-6 w-6 text-[9px]";
   const [broken, setBroken] = useState(false);
   if (src && !broken) {
     return (
@@ -39,7 +39,7 @@ function Avatar({ src, name, size }: { src: string | null; name: string; size: "
   }
   return (
     <span
-      className={`${box} grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 font-bold ring-1 ring-black/40`}
+      className={`${box} grid shrink-0 place-items-center rounded-full bg-gradient-to-br from-sky-500 to-indigo-500 font-bold text-white ring-1 ring-black/40`}
     >
       {initials(name) || "?"}
     </span>
@@ -88,7 +88,7 @@ export default function ChatPanel({
       <div
         className={
           isOverlay
-            ? "pointer-events-auto max-h-[45vh] space-y-1.5 overflow-y-auto px-3 pb-1 [scrollbar-width:none]"
+            ? "pointer-events-auto max-h-[32vh] space-y-1.5 overflow-y-auto px-3 pb-1 [scrollbar-width:none]"
             : "flex-1 space-y-2 overflow-y-auto px-4 py-3"
         }
       >
@@ -105,25 +105,25 @@ export default function ChatPanel({
           }
           if (m.kind === "reaction") {
             return (
-              <div key={m.id} className="flex items-center gap-2 text-sm text-white/80">
+              <div key={m.id} className="flex items-center gap-1.5 text-xs text-white/80">
                 <Avatar src={m.avatar} name={m.name} size={avatarSize} />
-                <span className="font-semibold text-fuchsia-300">
+                <span className="font-medium text-fuchsia-300">
                   {m.name}
                 </span>
-                <span className="text-lg">{m.body}</span>
+                <span className="text-base">{m.body}</span>
               </div>
             );
           }
           return (
-            <div key={m.id} className="flex items-start gap-2">
+            <div key={m.id} className="flex items-start gap-1.5">
               <Avatar src={m.avatar} name={m.name} size={avatarSize} />
               <p
-                className={`min-w-0 flex-1 text-sm leading-snug ${
-                  isOverlay ? "drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]" : ""
+                className={`min-w-0 flex-1 text-xs leading-snug ${
+                  isOverlay ? "drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)]" : ""
                 }`}
               >
                 <span
-                  className={`font-semibold ${
+                  className={`font-medium ${
                     m.participantId === myId ? "text-emerald-300" : "text-sky-300"
                   }`}
                 >

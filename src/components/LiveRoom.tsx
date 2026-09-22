@@ -558,7 +558,7 @@ function Room({
           )}
 
           <SlideComments>
-            <div className="bg-gradient-to-t from-black via-black/75 to-transparent pt-8">
+            <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-4">
               <ChatPanel
                 variant="overlay"
                 messages={visibleMessages}
